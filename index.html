@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debt Free</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+        }
+        #instructions {
+            margin-bottom: 20px;
+        }
+        #graph-container {
+            position: relative;
+            width: 90vw;
+            height: 80vh;
+            max-width: 1200px;
+            max-height: 800px;
+            margin: auto;
+            border: 2px solid #000;
+            border-radius: 10px;
+            background-color: #f0f0f0;
+            overflow: hidden;
+            padding: 20px;
+        }
+        .vertex {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background-color: lightblue;
+            border: 2px solid #000;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 50px;
+            font-size: 20px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            z-index: 2;
+        }
+        .edge {
+            position: absolute;
+            height: 2px;
+            background-color: black;
+            transform-origin: 0 0;
+            z-index: 1;
+        }
+        #controls {
+            margin-top: 20px;
+            display: flex;
+    		align-items: center;
+    		justify-content: center;
+    		gap: 10px;
+        }
+        #controls button {
+            font-size: 18px;
+            padding: 10px 20px;
+            margin: 5px;
+            cursor: pointer;
+        }
+        .vertex-update {
+            animation: balanceUpdate 0.5s ease;
+        }
+        @keyframes balanceUpdate {
+            0% {
+                background-color: lightblue;
+                transform: scale(1);
+            }
+            50% {
+                background-color: lightcoral;
+                transform: scale(1.2);
+            }
+            100% {
+                background-color: lightblue;
+                transform: scale(1);
+            }
+        }
+        #level-counter {
+            font-size: 18px;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="instructions">
+        <h1>Debt Free</h1>
+        <p>The goal is to make sure every individual (vertex) has a non-negative bank balance. Click on a vertex to initiate a transaction. Each transaction transfers a dollar from the selected vertex to every adjacent vertex.</p>
+    </div>
+    <div id="graph-container"></div>
+    <div id="controls">
+        <button id="start-btn" aria-label="Start New Game">Start New Game</button>
+        <button id="next-btn" style="display:none;" aria-label="Next Level">Next Level</button>
+        <button id="restart-btn" style="display:none;" aria-label="Restart Level">Restart Level</button>
+        <span id="level-counter">Level: 0</span>
+    </div>
+    <script src="game.js"></script>
+</body>
+</html>
